@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f8f5">
+  <meta name="description" content="Change image DPI in your browser. Keep every pixel untouched or resize pixels for a new print size. No upload, account, or watermark.">
+  <title>DPI Converter — Change Image DPI Online</title>
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="./" aria-label="DPI Converter home"><span class="brand-mark">d<span>.</span></span><span>DPI Converter</span></a>
+    <span class="header-note"><span class="status-dot"></span> Private by design</span>
+  </header>
+
+  <main>
+    <section class="tool-shell" aria-labelledby="page-title">
+      <div class="intro">
+        <p class="eyebrow">IMAGE TOOL <span class="rule"></span> NO UPLOADS</p>
+        <h1 id="page-title">DPI Converter<span class="title-dot">.</span></h1>
+        <p class="lede">Set the DPI your print workflow needs. Keep the pixels exactly as they are, or resize them yourself.</p>
+      </div>
+
+      <div class="tool-card">
+        <div class="step-heading"><span class="step-number">01</span><div><h2>Choose one image</h2><p>JPEG, PNG, or BMP · one file at a time</p></div></div>
+        <label class="dropzone" id="dropzone" for="file-input">
+          <input id="file-input" type="file" accept="image/jpeg,image/png,image/bmp,.jpg,.jpeg,.png,.bmp" aria-label="Choose a JPEG, PNG or BMP image">
+          <span class="upload-icon" aria-hidden="true">↑</span>
+          <span class="drop-title">Drop your image here <span>or choose a file</span></span>
+          <span class="drop-subtitle">Processed in this browser. Nothing is sent anywhere.</span>
+        </label>
+        <div class="file-detail" id="file-detail" hidden>
+          <div class="file-avatar" aria-hidden="true">▧</div><div class="file-copy"><strong id="file-name"></strong><span id="file-info"></span></div>
+          <button class="text-button" id="remove-file" type="button" aria-label="Remove selected image">Remove</button>
+        </div>
+
+        <div class="separator"></div>
+        <div class="step-heading"><span class="step-number">02</span><div><h2>Set the DPI</h2><p>Choose a preset or enter your own value.</p></div></div>
+        <div class="dpi-row"><label for="dpi-input">Target DPI</label><div class="dpi-input-wrap"><input id="dpi-input" type="number" inputmode="numeric" min="1" max="65535" step="1" value="300"><span>DPI</span></div></div>
+        <div class="presets" role="group" aria-label="DPI presets">
+          <button type="button" data-dpi="72">72</button><button type="button" data-dpi="96">96</button><button type="button" data-dpi="150">150</button><button type="button" data-dpi="200">200</button><button type="button" data-dpi="300">300</button><button type="button" data-dpi="400">400</button><button type="button" data-dpi="600">600</button>
+        </div>
+
+        <div class="separator"></div>
+        <div class="step-heading"><span class="step-number">03</span><div><h2>Choose what changes</h2><p>The difference matters for print quality.</p></div></div>
+        <fieldset class="mode-options"><legend class="sr-only">Conversion mode</legend>
+          <label class="mode-option"><input type="radio" name="mode" value="metadata" checked><span class="radio-visual"></span><span><strong>DPI tag only <em>Recommended</em></strong><small>Every image pixel stays untouched. Only the declared print size changes.</small></span></label>
+          <label class="mode-option"><input type="radio" name="mode" value="resize"><span class="radio-visual"></span><span><strong>Resize pixels</strong><small>Set a new width and height. The browser draws a new image.</small></span></label>
+        </fieldset>
+        <div class="resize-fields" id="resize-fields" hidden>
+          <label>Width <span>px</span><input id="width-input" type="number" inputmode="numeric" min="1" max="16000" step="1" placeholder="Width"></label>
+          <span class="dimension-cross" aria-hidden="true">×</span>
+          <label>Height <span>px</span><input id="height-input" type="number" inputmode="numeric" min="1" max="16000" step="1" placeholder="Height"></label>
+          <p class="field-hint">Set both dimensions. Resizing can soften an image; changing DPI alone cannot add detail.</p>
+        </div>
+        <div class="output-row"><label for="output-format">Download as</label><select id="output-format"><option value="original">Original format</option><option value="jpeg">JPEG</option><option value="png">PNG</option></select></div>
+        <p class="format-note" id="format-note">Original format keeps the file type. Converting to JPEG or PNG redraws the image, even in DPI tag mode.</p>
+
+        <div class="action-area"><button class="download-button" id="convert-button" type="button" disabled><span>Convert & download</span><span aria-hidden="true">↗</span></button><p id="status" class="status" role="status" aria-live="polite">Choose an image to get started.</p></div>
+      </div>
+      <p class="under-card">No account. No watermark. Your image stays on your device.</p>
+    </section>
+
+    <section class="details" aria-label="How this DPI changer works">
+      <div class="section-lead"><p class="eyebrow">THE DETAILS</p><h2>Know exactly what changes.</h2></div>
+      <div class="info-grid">
+        <article><span class="info-index">01 / FILES</span><h3>Supported formats</h3><p>Use one JPEG, PNG, or BMP image from your device. Download in the original format, JPEG, or PNG. TIFF, ICO, HEIC, and PDF are not accepted by this tool.</p></article>
+        <article><span class="info-index">02 / METADATA</span><h3>DPI tag only</h3><p>The pixel width and height do not change. Print width in inches = pixel width ÷ DPI; print height = pixel height ÷ DPI. With original format selected, the image data remains untouched.</p></article>
+        <article><span class="info-index">03 / PIXELS</span><h3>Resize pixels</h3><p>Enter a width and height in pixels. The browser resamples the image to those dimensions and writes the chosen DPI. Print size then equals the new pixel dimensions ÷ DPI.</p></article>
+      </div>
+      <div class="faq"><h2>Good to know</h2><details><summary>Does changing DPI improve image quality?</summary><p>No. The DPI tag tells print software how to interpret existing pixels. To change the pixel count, select Resize pixels and enter new dimensions. Enlarging an image does not restore missing detail.</p></details><details><summary>Can I change image DPI without resizing it?</summary><p>Yes. Select DPI tag only and Original format. This DPI changer edits the DPI metadata while leaving the pixel data as it was.</p></details><details><summary>Can I convert DPI online on my phone?</summary><p>Yes. Choose one image from your phone, set the target DPI, and download the result. Processing happens in your browser.</p></details></div>
+    </section>
+  </main>
+  <footer><span>© DPI Converter</span><span>No login · No registration · No uploads</span></footer>
+</body>
+</html>
